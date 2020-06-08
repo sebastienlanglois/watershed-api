@@ -1,0 +1,23 @@
+name: watershed_api
+channels:
+ - conda-forge
+dependencies:
+ - python=3.8*
+ - pip=20
+ - python-dotenv
+ - fsspec
+ - s3fs
+ - dask
+ - geopandas
+ - sqlalchemy
+ - matplotlib
+ - flask
+ - flask-restful
+ - flask-httpauth
+ - ipywidgets
+ - ipyleaflet
+ - jupyter-panel-proxy
+ - numpy
+ - pandas
+ - panel
+ - scipy
