@@ -5,6 +5,7 @@ dependencies:
  - python=3.8*
  - pip=20
  - python-dotenv
+ - flask-testing
  - fsspec
  - s3fs
  - dask
@@ -19,5 +20,6 @@ dependencies:
  - jupyter-panel-proxy
  - numpy
  - pandas
+ - pytest
  - panel
  - scipy

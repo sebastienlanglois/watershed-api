@@ -1,5 +1,4 @@
-from watershed_api import create_app
-app = create_app()
+from watershed_api import app
 
 if __name__ == "__main__":
     app.run()

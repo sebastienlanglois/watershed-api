@@ -10,18 +10,18 @@ gdf = gpd.GeoDataFrame.from_file(Config.GEOJSON_BUCKET)
 spatial_index = gdf.sindex
 
 
-def create_app(config_class=Config):
-    app = Flask(__name__)
-    app.config.from_object(config_class)
-    api = Api(app)
+# def create_app(config_class=Config):
+app = Flask(__name__)
+# app.config.from_object(config_class)
+api = Api(app)
 
-    parser = reqparse.RequestParser()
-    parser.add_argument('latitude', type=float)
-    parser.add_argument('longitude', type=float)
+parser = reqparse.RequestParser()
+parser.add_argument('latitude', type=float)
+parser.add_argument('longitude', type=float)
 
-    api.add_resource(WatershedDelimitation, '/',
-                     resource_class_kwargs={'parser': parser,
-                                            'gdf': gdf,
-                                            'spatial_index': spatial_index})
+api.add_resource(WatershedDelimitation, '/',
+                 resource_class_kwargs={'parser': parser,
+                                        'gdf': gdf,
+                                        'spatial_index': spatial_index})
 
-    return app
+# return app
