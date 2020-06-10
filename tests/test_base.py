@@ -32,7 +32,7 @@ class TestApi(unittest.TestCase):
         # sends HTTP GET request to the application
         # on the specified path
         with self.client.test_client() as client:
-            result = client.get('/',
+            result = client.get('/api',
                                 data={'longitude': -72.578659,
                                       'latitude': 46.369599}
                                 )
@@ -44,7 +44,7 @@ class TestApi(unittest.TestCase):
 
         with self.client.test_client() as client:
             result = np.ceil(gpd.GeoDataFrame.from_features(
-                client.get('/',
+                client.get('/api',
                            data={'longitude': -72.578659,
                                  'latitude': 46.369599}
                            ).json,
