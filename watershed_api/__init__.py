@@ -19,7 +19,7 @@ parser = reqparse.RequestParser()
 parser.add_argument('latitude', type=float)
 parser.add_argument('longitude', type=float)
 
-api.add_resource(WatershedDelimitation, '/',
+api.add_resource(WatershedDelimitation, '/api',
                  resource_class_kwargs={'parser': parser,
                                         'gdf': gdf,
                                         'spatial_index': spatial_index})
