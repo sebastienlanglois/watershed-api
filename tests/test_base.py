@@ -42,13 +42,14 @@ class TestApi(unittest.TestCase):
         # sends HTTP GET request to the application
         # on the specified path
 
-        result = np.ceil(
-            gpd.GeoDataFrame \
-            .from_features(self.client.get('/',
-                                           data={'longitude': -72.578659,
-                                                 'latitude': 46.369599}) \
-                           .json(), crs=4326) \
-            .to_crs(epsg=32198).area.values[0] / 1000000)
+        with self.client.test_client() as client:
+            result = np.ceil(
+                gpd.GeoDataFrame
+                .from_features(client.get('/',
+                                          data={'longitude': -72.578659,
+                                                'latitude': 46.369599})
+                               .json(), crs=4326)
+                .to_crs(epsg=32198).area.values[0] / 1000000)
 
         # assert  of the response
         self.assertEqual(result, 41774.0)
