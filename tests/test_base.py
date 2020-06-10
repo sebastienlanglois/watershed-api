@@ -1,5 +1,7 @@
 import unittest
 from watershed_api import app
+import numpy as np
+import geopandas as gpd
 
 app.testing = True
 
@@ -36,16 +38,21 @@ class TestApi(unittest.TestCase):
                                 )
             self.assertEqual(result.status_code, 200)
 
-    # def test_home_data(self):
-    #     # sends HTTP GET request to the application
-    #     # on the specified path
-    #     result = self.app.get('/?longitude=-72.578659&latitude=46.369599')
-    #
-    #     # assert the status code of the response
-    #     self.assertEqual(result.status_code, 200)
+    def test_home_data(self):
+        # sends HTTP GET request to the application
+        # on the specified path
 
-        # assert the response data
-        # self.assertEqual(result.data, "Hello World!!!")
+        result = np.ceil(
+            gpd.GeoDataFrame \
+            .from_features(self.client.get('/',
+                                           data={'longitude': -72.578659,
+                                                 'latitude': 46.369599}) \
+                           .json(), crs=4326) \
+            .to_crs(epsg=32198).area.values[0] / 1000000)
+
+        # assert  of the response
+        self.assertEqual(result, 41774.0)
+
 
 
 if __name__ == '__main__':
