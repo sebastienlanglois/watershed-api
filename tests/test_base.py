@@ -43,17 +43,15 @@ class TestApi(unittest.TestCase):
         # on the specified path
 
         with self.client.test_client() as client:
-            result = np.ceil(
-                gpd.GeoDataFrame
-                .from_features(client.get('/',
-                                          data={'longitude': -72.578659,
-                                                'latitude': 46.369599})
-                               .json(), crs=4326)
-                .to_crs(epsg=32198).area.values[0]/1000000)
+            result = np.ceil(gpd.GeoDataFrame.from_features(
+                client.get('/',
+                           data={'longitude': -72.578659,
+                                 'latitude': 46.369599}
+                           ).json(),
+                crs=4326).to_crs(epsg=32198).area.values[0]/1000000)
 
         # assert  of the response
         self.assertEqual(result, 41774.0)
-
 
 
 if __name__ == '__main__':
