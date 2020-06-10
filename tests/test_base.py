@@ -47,7 +47,7 @@ class TestApi(unittest.TestCase):
                 client.get('/',
                            data={'longitude': -72.578659,
                                  'latitude': 46.369599}
-                           ).json(),
+                           ).json,
                 crs=4326).to_crs(epsg=32198).area.values[0]/1000000)
 
         # assert  of the response
