@@ -56,7 +56,7 @@ class WatershedDelimitation(Resource):
 
         point = Point(coordinates)
 
-        # find index of sub-basin (polygon) on which the selected coordinates/point fall on
+        # find index of sub-basin (polygon) on which the selected coordinate/point falls on
         possible_matches = gdf.iloc[list(spatial_index.intersection(point.bounds))]
         polygon_index = possible_matches[possible_matches.intersects(point)]
 
